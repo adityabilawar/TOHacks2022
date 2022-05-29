@@ -6,7 +6,7 @@
     <script>
       const process = { env: {} };
       process.env.GOOGLE_MAPS_API_KEY =
-        "AIzaSyC1COUUe3Uhkj06qQo-_Ha2HwABlyB7qq4";
+        "";
     </script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- playground-hide-end -->
@@ -85,14 +85,14 @@ console.log(cities)
     request.open("GET", "http://169.61.130.183:8070/get_coordinates?city=" + cities[1]);
     </script>
     <script
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1COUUe3Uhkj06qQo-_Ha2HwABlyB7qq4&callback=initMap&v=weekly"
+      src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap&v=weekly"
       defer
     ></script>
     <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
 <df-messenger
   intent="WELCOME"
   chat-title="PopUpBiz Bot"
-  agent-id="0e65ca68-d731-4555-b5f2-e5394c7e3202"
+  agent-id=
   language-code="en"
 ></df-messenger>
   </body>
