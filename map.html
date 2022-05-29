@@ -1,0 +1,99 @@
+<html>
+  <head>
+    <title>PopUpBusinesses</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <!-- playground-hide -->
+    <script>
+      const process = { env: {} };
+      process.env.GOOGLE_MAPS_API_KEY =
+        "AIzaSyC1COUUe3Uhkj06qQo-_Ha2HwABlyB7qq4";
+    </script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <!-- playground-hide-end -->
+
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <script type="module" src="./index.js"></script>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+var map;
+function initMap(){
+    var mapOptions  = { 
+        zoom: 5,
+        center: { lat:24.886, lng: -70.268},
+    };
+
+
+    map = new google.maps.Map(document.getElementById('map'), mapOptions);
+
+   
+
+    var triangleCoords = [
+        { lat: 25.774, lng: -80.190 },
+        { lat: 18.774, lng: -66.190 },
+        { lat: 32.774, lng: -84.190 },
+        { lat: 32.774, lng: -84.190 },
+        { lat: 32.774, lng: -84.190 },
+        { lat: 32.774, lng: -84.190 },
+    ];
+
+    // Construct the polygon 
+  const businessLocation = new google.maps.Polygon({
+    paths: triangleCoords,
+    strokeColor: "#FF0000",
+    strokeOpacity: 0.8,
+    strokeWeight: 2,
+    fillColor: "#FF0000",
+    editable: true,
+    fillOpacity: 0.35,
+    geodesic: true,
+  });
+
+  businessLocation.setMap(map);
+
+  let vertices = businessLocation.getPath();
+  for (let i = 0; i < vertices.getLength(); i++){
+      let vertex = vertices.getAt(i);
+      console.log({
+          lat: vertex.lat(),
+          lng: vertex.lng(),
+      });
+  }
+
+};
+//const cities = response.data;
+//const coordArr = null;
+axios.get('http://169.61.130.183:8070/get_cities')
+    .then(response => 
+    {
+         //cities = response.data;
+        console.log(response.data)
+    }
+
+    ).catch(error => console.error(error));
+    request.open("GET", "http://169.61.130.183:8070/get_cities");
+console.log(cities)
+    axios.get('http://169.61.130.183:8070/get_coordinates?city=' + cities[1])
+    .then(response => 
+    {
+         //coordArr = response.data;
+        console.log(response.data)
+    }
+
+    ).catch(error => console.error(error));
+    request.open("GET", "http://169.61.130.183:8070/get_coordinates?city=" + cities[1]);
+    </script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC1COUUe3Uhkj06qQo-_Ha2HwABlyB7qq4&callback=initMap&v=weekly"
+      defer
+    ></script>
+    <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+<df-messenger
+  intent="WELCOME"
+  chat-title="PopUpBiz Bot"
+  agent-id="0e65ca68-d731-4555-b5f2-e5394c7e3202"
+  language-code="en"
+></df-messenger>
+  </body>
+</html>
